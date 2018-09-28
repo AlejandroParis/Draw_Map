@@ -1,0 +1,4 @@
+﻿  j1Map.cpp
+c:\users\alejandropg6\desktop\dev_class5_handout\motor2d\j1map.cpp(288): error C3867: 'pugi::xml_attribute::as_int': non-standard syntax; use '&' to create a pointer to member
+c:\users\alejandropg6\desktop\dev_class5_handout\motor2d\j1map.cpp(288): error C2440: '=': cannot convert from 'int (__thiscall pugi::xml_attribute::* )(int) const' to 'uint'
+  c:\users\alejandropg6\desktop\dev_class5_handout\motor2d\j1map.cpp(288): note: There is no context in which this conversion is possible
