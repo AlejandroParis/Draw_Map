@@ -14,11 +14,16 @@ struct MapLayer
 	uint				width = 0u;
 	uint				height = 0u;
 	uint*				data = nullptr;
+	inline uint Get(int x, int y) const
+	{
+		return data[(width*y) + x];
+	}
+	
 };
 	// TODO 7: Create a method that receives a tile id and returns it's Rectfind the Rect associated with a specific tile id
 	// TODO 6: Short function to get the value of x,y
 
-
+	
 
 // ----------------------------------------------------
 struct TileSet

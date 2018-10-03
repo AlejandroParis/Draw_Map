@@ -32,7 +32,17 @@ void j1Map::Draw()
 		return;
 
 	// TODO 5: Prepare the loop to draw all tilesets + Blit
-
+	for (uint i = 0; i < data.width; i++)
+	{
+		for (uint j = 0; j < data.height; j++)
+		{
+			uint id = data.layers.start->data->Get(i,j);
+			if (id == 0)continue;
+			SDL_Rect rect = data.tilesets.start->data->GetTileRect(id);
+			iPoint point = MapToWorld(i,j);
+			App->render->Blit(data.tilesets.start->data->texture, point.x, point.y, &rect);
+		}
+	}
 		// TODO 9: Complete the draw function
 
 }
@@ -281,11 +291,12 @@ bool j1Map::LoadLayer(pugi::xml_node& layer_node, MapLayer* set)
 	set->name.create(layer_node.attribute("name").as_string());
 	set->width = layer_node.attribute("width").as_int();
 	set->height = layer_node.attribute("height").as_int();
+	set->data = new uint[set->width*set->height];
 	memset(set->data,0,sizeof(uint)*set->width*set->height);
 	uint i = 0;
-	for (pugi::xml_node tileset = layer_node.child("data").child("tile"); tileset; tileset = tileset.next_sibling("tileset"))
+	for (pugi::xml_node tileset = layer_node.child("data").child("tile"); tileset; tileset = tileset.next_sibling("tile"))
 	{
-		set->data[i] = layer_node.attribute("gid").as_uint;
+		set->data[i] = tileset.attribute("gid").as_uint();
 			++i;
 	}
 	return ret;
