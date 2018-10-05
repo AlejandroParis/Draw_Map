@@ -52,9 +52,27 @@ iPoint j1Map::MapToWorld(int x, int y) const
 {
 	iPoint ret;
 
-	ret.x = x * data.tile_width;
-	ret.y = y * data.tile_height;
+	/*ret.x = x * data.tile_width;
+	ret.y = y * data.tile_height;*/
 
+	ret.x = (x - y) * (data.tile_width*0.5f);
+	ret.y = (x + y) * (data.tile_height*0.5f);
+
+	return ret;
+}
+
+iPoint j1Map::WorldToMap(int x, int y) const
+{
+	iPoint ret(0, 0);
+	// TODO 2: Add orthographic world to map coordinates
+
+	/*ret.x = x / data.tile_width;
+	ret.y = y / data.tile_height;*/
+
+	ret.x = ((x/data.tile_width) + (y / data.tile_height))*0.5;
+	ret.y = ((y/data.tile_height) - (x / data.tile_width))*0.5;
+
+	// TODO 3: Add the case for isometric maps to WorldToMap
 	return ret;
 }
 
